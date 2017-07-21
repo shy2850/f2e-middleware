@@ -3,7 +3,9 @@ f2e-server middlewares
 
 
 ## template
-with lodash template
+with lodash template  
+`npm i f2e-middleware-template --save-dev`
+
 ``` javascript
 middlewares: [
     {
@@ -16,6 +18,8 @@ middlewares: [
 
 ## markdown
 compile `.md` to `.html`
+`npm i f2e-middleware-markdown --save-dev`
+
 ``` javascript
 middlewares: [
     {
@@ -30,6 +34,8 @@ middlewares: [
 
 ## proxy
 proxy url to local server
+`npm i f2e-middleware-proxy --save-dev`
+
 ``` javascript
 middlewares: [
     {
