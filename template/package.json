@@ -1,0 +1,26 @@
+{
+  "name": "f2e-middle-template",
+  "version": "0.2.0",
+  "description": "template of f2e-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shy2850/f2e-middleware.git"
+  },
+  "keywords": [
+    "f2e-server",
+    "template"
+  ],
+  "author": "shy2850",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shy2850/f2e-middleware/issues"
+  },
+  "homepage": "https://github.com/shy2850/f2e-middleware#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}

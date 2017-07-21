@@ -1,0 +1,30 @@
+{
+  "name": "f2e-middleware",
+  "version": "0.0.1",
+  "description": "f2e-server middlewares",
+  "main": "index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint ./**/*.js  --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shy2850/f2e-middleware.git"
+  },
+  "author": "shy2850",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shy2850/f2e-middleware/issues"
+  },
+  "homepage": "https://github.com/shy2850/f2e-middleware#readme",
+  "dependencies": {
+    "eslint": "^4.2.0"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "f2e-middle-markdown",
+  "version": "0.1.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shy2850/f2e-middleware.git"
+  },
+  "keywords": [
+    "f2e-server",
+    "markdown"
+  ],
+  "author": "shy2850",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shy2850/f2e-middleware/issues"
+  },
+  "homepage": "https://github.com/shy2850/f2e-middleware#readme",
+  "dependencies": {
+    "marked": "^0.3.6"
+  }
+}
