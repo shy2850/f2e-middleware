@@ -17,7 +17,7 @@ middlewares: [
 ```
 
 ## markdown
-compile `.md` to `.html`
+compile `.md` to `.html`  
 `npm i f2e-middleware-markdown --save-dev`
 
 ``` javascript
@@ -33,7 +33,7 @@ middlewares: [
 ```
 
 ## proxy
-proxy url to local server
+proxy url to local server  
 `npm i f2e-middleware-proxy --save-dev`
 
 ``` javascript
