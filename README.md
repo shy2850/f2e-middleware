@@ -1,8 +1,12 @@
 # f2e-middleware
-f2e-server middlewares
+[f2e-server](https://githu.com/shy2850/f2e-server) middlewares
 
+## Docs
+[f2e-server 中间件开发](https://f2e-server.com/zhong-jian-jian-kai-fa.html)
 
-## template
+## middlewares
+
+### template
 with lodash template  
 `npm i f2e-middleware-template --save-dev`
 
@@ -16,7 +20,7 @@ middlewares: [
 
 ```
 
-## markdown
+### markdown
 compile `.md` to `.html`  
 `npm i f2e-middleware-markdown --save-dev`
 
@@ -32,7 +36,7 @@ middlewares: [
 
 ```
 
-## proxy
+### proxy
 proxy url to local server  
 `npm i f2e-middleware-proxy --save-dev`
 
