@@ -1,0 +1,16 @@
+{
+  "name": "f2e-middle-dest",
+  "version": "0.1.0",
+  "description": "f2e rename middleware",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "f2e-server",
+    "dest",
+    "rename"
+  ],
+  "author": "shy2850",
+  "license": "MIT"
+}

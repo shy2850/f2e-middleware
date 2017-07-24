@@ -51,3 +51,18 @@ middlewares: [
 ]
 
 ```
+
+### dest
+rename resources dest  
+`npm i f2e-middleware-dest --save-dev`
+
+``` javascript
+middlewares: [
+    {
+        test: /^scss/,
+        middleware: 'dest',
+        dest: 'css'
+    },
+]
+
+```
