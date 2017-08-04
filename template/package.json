@@ -1,6 +1,6 @@
 {
   "name": "f2e-middle-template",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "template of f2e-server",
   "main": "index.js",
   "scripts": {
