@@ -4,14 +4,16 @@ module.exports = (conf, options) => {
     const { build } = conf
     const {
         setBefore = 1,
-        test = /.*/
+        test = /.*/,
+        middleware,
+        ...opts
     } = options
 
     const render = function (pathname, data) {
         if (test.test(pathname)) {
             let str = data.toString()
             try {
-                str = _.template(str)({pathname, require})
+                str = _.template(str)({pathname, require, ...opts})
             } catch (e) {
                 console.log(pathname, e)
             }
