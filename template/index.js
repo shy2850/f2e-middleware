@@ -24,6 +24,7 @@ module.exports = (conf, options) => {
         onSet: render
     } : {
         setBefore,
+        // 开发环境需要实时更新模板引擎的运行时结果
         onText: render
     }
 }

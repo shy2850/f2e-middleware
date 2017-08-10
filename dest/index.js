@@ -7,12 +7,12 @@ module.exports = (conf, options) => {
     } = options
 
     const render = function (pathname, data, store) {
-        if (build && test.test(pathname)) {
+        if (test.test(pathname)) {
             store._set(pathname.replace(test, dest), data)
         }
     }
 
-    return {
+    return build && {
         onSet: render,
         outputFilter (pathname, data) {
             return !test.test(pathname)
