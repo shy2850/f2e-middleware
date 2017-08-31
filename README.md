@@ -51,6 +51,19 @@ middlewares: [
 ]
 
 ```
+### qrcode
+show QRcode of url
+`npm i f2e-middleware-qrcode --save-dev`
+
+``` javascript
+middlewares: [
+    {
+        test: /^qr/,
+        middleware: 'qrcode'
+    },
+]
+
+```
 
 ### dest
 rename resources dest  

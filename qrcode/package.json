@@ -1,0 +1,26 @@
+{
+  "name": "f2e-middle-qrcode",
+  "version": "0.2.1",
+  "description": "show qrcode of url",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shy2850/f2e-middleware.git"
+  },
+  "keywords": [
+    "f2e-server",
+    "qrcode"
+  ],
+  "author": "shy2850",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shy2850/f2e-middleware/issues"
+  },
+  "homepage": "https://github.com/shy2850/f2e-middleware#readme",
+  "dependencies": {
+    "qr-image": "^3.2.0"
+  }
+}
