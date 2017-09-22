@@ -7,11 +7,11 @@ module.exports = (conf, options) => {
         test = /.*/
     } = options
 
-    const render = function (pathname, data) {
+    const render = function (pathname, data, request, response, memory) {
         if (test.test(pathname)) {
             let str = data.toString()
             try {
-                str = _.template(str)(_.extend(options, {pathname, require}))
+                str = _.template(str)({pathname, require, request, response, memory})
             } catch (e) {
                 console.log(pathname, e)
             }
