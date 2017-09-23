@@ -11,7 +11,7 @@ module.exports = (conf, options) => {
         if (test.test(pathname)) {
             let str = data.toString()
             try {
-                str = _.template(str)({pathname, require, request, response, memory})
+                str = _.template(str)({pathname, require, request, response, memory, conf})
             } catch (e) {
                 console.log(pathname, e)
             }
