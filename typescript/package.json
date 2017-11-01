@@ -1,0 +1,27 @@
+{
+  "name": "f2e-middle-typescript",
+  "version": "0.2.0",
+  "description": "typescript of f2e-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shy2850/f2e-middleware.git"
+  },
+  "keywords": [
+    "f2e-server",
+    "typescript"
+  ],
+  "author": "shy2850",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shy2850/f2e-middleware/issues"
+  },
+  "homepage": "https://github.com/shy2850/f2e-middleware#readme",
+  "dependencies": {
+    "glob-to-regexp": "^0.3.0",
+    "typescript": "^2.6.1"
+  }
+}

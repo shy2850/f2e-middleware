@@ -79,3 +79,17 @@ middlewares: [
 ]
 
 ```
+### typescript
+with typescript compiler 
+`npm i f2e-middleware-typescript --save-dev`  
+use `tsconfig.json`
+
+``` javascript
+middlewares: [
+    {
+        middleware: 'typescript',
+        getModuleId: pathname => pathname.replace('src\/', '')
+    }
+]
+
+```
