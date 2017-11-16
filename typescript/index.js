@@ -18,14 +18,15 @@ module.exports = (conf, options = {}) => {
         setBefore,
         suffixReg = /\.[jet]sx?/,
         outputSuffix = '.js',
-        getModuleId
+        getModuleId,
+        tsconfig = {}
     } = options
 
     const {
         include = ['*'],
         exclude = ["node_modules", "bower_components", "jspm_packages"],
         compilerOptions = {}
-    } = baseCfg
+    } = Object.assign({}, baseCfg, tsconfig)
 
     const includeReg = include.map(globToRegExp)
     const excludeReg = exclude.map(globToRegExp)
