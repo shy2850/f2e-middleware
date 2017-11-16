@@ -22,11 +22,12 @@ module.exports = (conf, options = {}) => {
         tsconfig = {}
     } = options
 
+    const cfg = Object.assign({}, baseCfg, tsconfig)
     const {
         include = ['*'],
         exclude = ["node_modules", "bower_components", "jspm_packages"],
         compilerOptions = {}
-    } = Object.assign({}, baseCfg, tsconfig)
+    } = cfg
 
     const includeReg = include.map(globToRegExp)
     const excludeReg = exclude.map(globToRegExp)
@@ -35,7 +36,7 @@ module.exports = (conf, options = {}) => {
 
     const render = function (pathname, data, store) {
         if (suffixReg.test(pathname) && includeTest(pathname) && !excludeTest(pathname)) {
-            let result = transpileModule(data.toString(), baseCfg)
+            let result = transpileModule(data.toString(), cfg)
             const newPath = pathname.replace(suffixReg, outputSuffix)
 
             if (getModuleId) {
