@@ -1,6 +1,6 @@
 {
   "name": "f2e-middle-typescript",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "typescript of f2e-server",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/shy2850/f2e-middleware#readme",
   "dependencies": {
     "glob-to-regexp": "^0.3.0",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.1",
+    "uglify-js": "^3.1.10"
   }
 }

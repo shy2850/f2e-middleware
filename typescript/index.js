@@ -43,8 +43,13 @@ module.exports = (conf, options = {}) => {
                 let moduleId = getModuleId(pathname.replace(suffixReg, ''))
                 result.outputText = setModuleId(result.outputText, moduleId)
             }
+            if (build) {
+                result.outputText = require('uglify-js').minify(result.outputText).code
+            }
             store._set(newPath, result.outputText)
-
+            if (cfg.sourceMap) {
+                store._set(newPath + '.map', result.sourceMapText)
+            }
             if (build || newPath === pathname) {
                 return result.outputText
             }
