@@ -47,7 +47,7 @@ module.exports = (conf, options = {}) => {
                 result.outputText = require('uglify-js').minify(result.outputText).code
             }
             store._set(newPath, result.outputText)
-            if (cfg.sourceMap) {
+            if (compilerOptions.sourceMap) {
                 store._set(newPath + '.map', result.sourceMapText)
             }
             if (build || newPath === pathname) {
