@@ -1,3 +1,5 @@
+const UglifyJS = require('uglify-js')
+const UglifyES = require('uglify-es')
 const { transpileModule } = require('typescript')
 const globToRegExp = require('glob-to-regexp')
 const path = require('path')
@@ -43,8 +45,10 @@ module.exports = (conf, options = {}) => {
                 let moduleId = getModuleId(pathname.replace(suffixReg, ''))
                 result.outputText = setModuleId(result.outputText, moduleId)
             }
-            if (build) {
-                result.outputText = require('uglify-js').minify(result.outputText).code
+            if (build && result.outputText) {
+                result.outputText = UglifyJS.minify(result.outputText).code
+                    || UglifyES.minify(result.outputText).code
+                    || result.outputText
             }
             store._set(newPath, result.outputText)
             if (compilerOptions.sourceMap) {
