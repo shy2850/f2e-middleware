@@ -8,7 +8,9 @@ module.exports = (conf, options) => {
 
     const render = function (pathname, data, store) {
         if (test.test(pathname)) {
-            store._set(pathname.replace(test, dest), data)
+            return {
+                outputPath: pathname.replace(test, dest)
+            }
         }
     }
 

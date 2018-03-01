@@ -1,0 +1,42 @@
+{
+  "name": "f2e-middle-rollup",
+  "version": "0.1.1",
+  "description": "rollup",
+  "main": "dist/index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "build": "rollup -c",
+    "prepare": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shy2850/f2e-middleware.git"
+  },
+  "keywords": [
+    "rollup",
+    "f2e-server"
+  ],
+  "author": "shy2850",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shy2850/f2e-middleware/issues"
+  },
+  "files": [
+    "src/*",
+    "dist/*"
+  ],
+  "homepage": "https://github.com/shy2850/f2e-middleware#readme",
+  "dependencies": {
+    "rollup": "^0.56.3",
+    "rollup-plugin-uglify": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/acorn": "^4.0.3",
+    "@types/chokidar": "^1.7.5",
+    "@types/node": "^9.4.6",
+    "@types/source-map": "^0.5.7",
+    "rollup-plugin-typescript2": "^0.11.1",
+    "typescript": "^2.7.2"
+  }
+}

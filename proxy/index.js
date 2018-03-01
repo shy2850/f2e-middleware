@@ -1,5 +1,6 @@
+const { resolve } = require('url')
+const request = require('request')
 module.exports = (conf, options) => {
-    const request = require('request')
     const {
         setBefore = 0,
         url,
@@ -9,7 +10,7 @@ module.exports = (conf, options) => {
 
     const render = function (path, req, resp) {
         if (test.test(path)) {
-            req.pipe(request(require('url').resolve(url, path.replace(test, pathname)))).pipe(resp)
+            req.pipe(request(resolve(url, path.replace(test, pathname)))).pipe(resp)
             return false
         }
     }
