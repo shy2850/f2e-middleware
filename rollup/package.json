@@ -1,6 +1,6 @@
 {
   "name": "f2e-middle-rollup",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "rollup",
   "main": "dist/index.js",
   "scripts": {
@@ -28,6 +28,7 @@
   ],
   "homepage": "https://github.com/shy2850/f2e-middleware#readme",
   "dependencies": {
+    "lodash": "^4.17.5",
     "rollup": "^0.56.3",
     "rollup-plugin-uglify": "^3.0.0"
   },

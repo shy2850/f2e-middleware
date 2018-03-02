@@ -8,5 +8,5 @@ module.exports = {
     plugins: [
         typescript()
     ],
-    external: ['rollup', 'fs', 'path']
+    external: ['rollup', 'fs', 'path', 'lodash']
 }
