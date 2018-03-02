@@ -50,6 +50,12 @@ module.exports = (conf, options) => {
     return {
         setBefore,
         onSet: render,
+        outputFilter (pathname, type, build) {
+            const p = pathname.match(pathREG)
+            if (imports[p.join('/')]) {
+                return false
+            }
+        },
         buildWatcher(pathname, type, build) {
             const p = pathname.match(pathREG)
             let importsMap

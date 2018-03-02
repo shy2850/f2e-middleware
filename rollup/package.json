@@ -1,6 +1,6 @@
 {
   "name": "f2e-middle-rollup",
-  "version": "0.2.0",
+  "version": "0.2.4",
   "description": "rollup",
   "main": "dist/index.js",
   "scripts": {
