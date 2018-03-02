@@ -52,7 +52,7 @@ module.exports = (conf, options) => {
         onSet: render,
         outputFilter (pathname, type, build) {
             const p = pathname.match(pathREG)
-            if (imports[p.join('/')]) {
+            if (p && imports[p.join('/')]) {
                 return false
             }
         },
