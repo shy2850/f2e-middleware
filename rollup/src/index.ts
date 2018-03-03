@@ -10,20 +10,25 @@ export interface Options extends InputOptions {
     output?: OutputOptions
 }
 const pathREG = /[^\\/]+/g
-let configBase: Options
+let configBases: Options[]
 if (existsSync(configPath)) {
-    configBase = require(configPath)
+    configBases = [].concat(require(configPath))
 }
 
 module.exports = (conf, options) => {
     const { build, root } = conf
-    const { setBefore, middleware, cfg = {} } = options;
-    const finalCfg = Object.assign(configBase, cfg);
-    const inputs = [].concat(finalCfg.input);
+    const { setBefore, middleware, mapConfig = (cfg: Options): Options => cfg } = options;
+    const inputs: { [x: string]: Options } = configBases.reduce((m, c) => {
+        [].concat(c.input).map(input => {
+            m[input] = mapConfig(c)
+        })
+        return m
+    }, {})
 
     let imports = {}
     const render = function (pathname, data, store) {
-        if (~inputs.indexOf(pathname)) {
+        let finalCfg = inputs[pathname]
+        if (finalCfg) {
             return new Promise(resolve => (async function (params) {
                 const { input, output = {}, plugins = [], ...cfg } = finalCfg;
                 const outputPath = output.file || pathname.replace(/\.\w+$/, '.js');
