@@ -41,9 +41,10 @@ module.exports = (conf, options) => {
                     const p = pathname.match(pathREG).join('/')
                     _.set(imports, [d, p], 1)
                 })
-                const { code, map } = await bundle.generate(output);
+                let { code, map } = await bundle.generate(output);
                 if (map) {
                     store._set(outputPath + '.map', JSON.stringify(map))
+                    code += `\n//# sourceMappingURL=${map.file}.map`
                 }
                 resolve({
                     data: code,
