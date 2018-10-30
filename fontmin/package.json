@@ -1,7 +1,7 @@
 {
-  "name": "f2e-middle-proxy",
-  "version": "0.1.8",
-  "description": "proxy url to f2e-server",
+  "name": "f2e-middle-fontmin",
+  "version": "0.1.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "f2e-server",
-    "proxy"
+    "fontmin"
   ],
   "author": "shy2850",
   "license": "MIT",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/shy2850/f2e-middleware#readme",
   "dependencies": {
-    "request": "^2.81.0"
+    "fontmin": "^0.9.7-beta",
+    "html-to-text": "^4.0.0"
   }
 }
