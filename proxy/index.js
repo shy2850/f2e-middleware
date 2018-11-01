@@ -15,7 +15,7 @@ module.exports = (conf, options) => {
                 const buffers = []
                 request(newPath, {
                     method: req.method,
-                    headers: req.rawHeaders || {},
+                    headers: req.headers || {},
                     body: req.rawBody || ''
                 }).on('error', function (e) {
                     resp.writeHead(500)
