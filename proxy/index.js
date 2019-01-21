@@ -8,7 +8,7 @@ module.exports = (conf, options) => {
         test = /.*/
     } = options
 
-    if (!usl) {
+    if (!url) {
         throw new Error('url needed!')
     }
     const render = function (path, req, resp) {
