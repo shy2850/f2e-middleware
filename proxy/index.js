@@ -8,6 +8,9 @@ module.exports = (conf, options) => {
         test = /.*/
     } = options
 
+    if (!usl) {
+        throw new Error('url needed!')
+    }
     const render = function (path, req, resp) {
         if (test.test(path)) {
             try {
@@ -15,7 +18,9 @@ module.exports = (conf, options) => {
                 const buffers = []
                 request(newPath, {
                     method: req.method,
-                    headers: req.headers || {},
+                    headers: Object.assign({}, req.headers, {
+                        host: url.replace(/^https?:\/\/([^\/]+).*$/, '$1')
+                    }),
                     body: req.rawBody || ''
                 }).on('error', function (e) {
                     resp.writeHead(500)
