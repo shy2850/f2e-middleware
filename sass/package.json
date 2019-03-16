@@ -1,6 +1,6 @@
 {
   "name": "f2e-middle-sass",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "sass url to f2e-server",
   "main": "index.js",
   "scripts": {

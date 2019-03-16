@@ -20,7 +20,7 @@ module.exports = (conf, options) => {
     const render = function (pathname, data, store) {
         if (test.test(pathname)) {
             const _pathname = join(root, pathname)
-            const outFile = pathname.replace(/\.\w+$/, '.css.map')
+            const outFile = pathname.replace(/\.\w+$/, '.css')
             try {
                 const result = renderSync({
                     data: data.toString().replace(/(@import.*)"(\S*\/)"/g, (impt, pre, dir) => {
@@ -35,7 +35,7 @@ module.exports = (conf, options) => {
                 })
 
                 if (result.map) {
-                    store._set(outFile, result.map)
+                    store._set(outFile + '.map', result.map)
                 }
                 result.stats.includedFiles.map(dep => {
                     const d = dep.match(pathREG).join('/').replace(root.match(pathREG).join('/') + '/', '')
