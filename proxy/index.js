@@ -12,9 +12,9 @@ module.exports = (conf, options) => {
         throw new Error('url needed!')
     }
     const render = function (path, req, resp) {
-        if (test.test(path)) {
+        if (test.test(req.url)) {
             try {
-                const newPath = resolve(url, path.replace(test, pathname))
+                const newPath = resolve(url, req.url.replace(test, pathname))
                 const buffers = []
                 request(newPath, {
                     method: req.method,
