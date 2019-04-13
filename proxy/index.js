@@ -5,6 +5,7 @@ module.exports = (conf, options) => {
         setBefore = 0,
         url,
         pathname = m => m,
+        renderHeaders = req => req.headers,
         test = /.*/
     } = options
 
@@ -18,7 +19,7 @@ module.exports = (conf, options) => {
                 const buffers = []
                 request(newPath, {
                     method: req.method,
-                    headers: Object.assign({}, req.headers, {
+                    headers: Object.assign({}, renderHeaders(req), {
                         host: url.replace(/^https?:\/\/([^\/]+).*$/, '$1')
                     }),
                     body: req.rawBody || ''
