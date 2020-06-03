@@ -10,7 +10,7 @@ module.exports = (conf, options) => {
     const render = function (path, req, resp) {
         if (test.test(path)) {
             const search = url.parse(req.url).search + ''
-            const code = qr.image(search.replace(/^\?/, ''), {type: 'png'})
+            const code = qr.image(decodeURIComponent(search.substring(1)), { type: 'png' })
             resp.setHeader('Content-type', 'image/png')
             code.pipe(resp)
             return false

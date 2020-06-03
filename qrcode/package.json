@@ -1,6 +1,6 @@
 {
   "name": "f2e-middle-qrcode",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "show qrcode of url",
   "main": "index.js",
   "scripts": {
