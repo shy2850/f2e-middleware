@@ -1,8 +1,10 @@
+// @ts-check
 const { resolve } = require('url')
 const request = require('request')
 module.exports = (conf, options) => {
     const {
         setBefore = 0,
+        debug = false,
         url,
         pathname = m => m,
         renderHeaders = req => req.headers,
@@ -17,13 +19,28 @@ module.exports = (conf, options) => {
             try {
                 const newPath = resolve(url, req.url.replace(test, pathname))
                 const buffers = []
-                request(newPath, {
+                
+
+                if (req.aborted || req.destroyed) {
+                    debug && console.log(path, 'aborted or destroyed')
+                    return false
+                }
+                req.addListener('close', function () {
+                    debug && console.log(path, 'close to abort')
+                    conn.abort()
+                })
+
+
+                debug && console.log(path, 'begin')
+                const conn = request(newPath, {
                     method: req.method,
                     headers: Object.assign({}, renderHeaders(req), {
                         host: url.replace(/^https?:\/\/([^\/]+).*$/, '$1')
                     }),
-                    body: req.rawBody || ''
-                }).on('error', function (e) {
+                    body: req.rawBody
+                })
+                conn.on('error', function (e) {
+                    debug && console.log(path, 'error')
                     resp.writeHead(500)
                     resp.end(e.toString())
                 }).on('data', data => {
@@ -31,6 +48,7 @@ module.exports = (conf, options) => {
                 }).on('response', response => {
                     resp.writeHead(response.statusCode, response.headers)
                 }).on('end', function () {
+                    debug && console.log(path, 'success')
                     resp.end(Buffer.concat(buffers))
                 })
             } catch (e) {
