@@ -1,14 +1,14 @@
 // @ts-check
 const { resolve } = require('url')
-const request = require('request')
+const http = require('http')
 module.exports = (conf, options) => {
     const {
         setBefore = 0,
-        debug = false,
         url,
+        debug,
+        timeout = 120000,
         pathname = m => m,
         renderHeaders = req => req.headers,
-        pipe = true,
         test = /.*/
     } = options
 
@@ -26,47 +26,24 @@ module.exports = (conf, options) => {
         if (test.test(req.url)) {
             try {
                 const newPath = resolve(url, req.url.replace(test, pathname))
-                const buffers = []
-                
-
-                if (req.aborted || req.destroyed) {
-                    debug && console.log(path, 'aborted or destroyed')
-                    return false
-                }
-                req.addListener('close', function () {
-                    debug && console.log(path, 'close to abort')
-                    conn.abort()
-                })
-
-                
-                debug && console.log(path, 'begin')
-                const conn = request(newPath, {
+                debug && console.log(newPath, 'begin')
+                const creq = http.request(newPath, {
                     method: req.method,
                     headers: Object.assign({}, renderHeaders(req), {
                         host: url.replace(/^https?:\/\/([^\/]+).*$/, '$1')
                     }),
-                    body: req['rawBody']
-                })
-                conn.on('error', function (e) {
-                    debug && console.log(path, 'error')
+                    timeout,
+                }, function (res) {
+                    debug && console.log(newPath, 'response')
+                    res.pipe(resp)
+                }).on('timeout', function () {
+                    debug && console.log(newPath, 'timeout')
+                }).on('error', function (err) {
+                    debug && console.log(newPath, 'error')
                     resp.writeHead(500)
-                    resp.end(e.toString())
-                })
-                if (pipe) {
-                    req.pipe(conn)
-                    conn.pipe(resp)
-                } else {
-                    conn.on('data', data => {
-                        buffers.push(data)
-                    }).on('response', response => {
-                        resp.writeHead(response.statusCode, response.headers)
-                    }).on('end', function () {
-                        debug && console.log(path, 'success')
-                        resp.end(Buffer.concat(buffers))
-                    })
-                }
-                
-                
+                    resp.end(err.toString())
+                });
+                req.pipe(creq)
             } catch (e) {
                 resp.writeHead(500)
                 resp.end(e.toString())
@@ -77,6 +54,6 @@ module.exports = (conf, options) => {
 
     return {
         setBefore,
-        [pipe ? 'beforeRoute' : 'onRoute']: render
+        beforeRoute: render
     }
 }
