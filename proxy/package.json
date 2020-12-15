@@ -1,6 +1,6 @@
 {
   "name": "f2e-middle-proxy",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "proxy url to f2e-server",
   "main": "index.js",
   "scripts": {
