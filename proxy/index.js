@@ -36,6 +36,8 @@ module.exports = (conf, options) => {
                 }, function (res) {
                     debug && console.log(newPath, 'response')
                     res.pipe(resp)
+                }).on('response', function (response) {
+                    resp.writeHead(response.statusCode, response.statusMessage, response.headers)
                 }).on('timeout', function () {
                     debug && console.log(newPath, 'timeout')
                 }).on('error', function (err) {
