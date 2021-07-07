@@ -9,7 +9,7 @@ module.exports = (conf, options) => {
         timeout = 120000,
         pathname = m => m,
         renderHeaders = req => req.headers,
-        responseHeaders = resp => resp.headers,
+        responseHeaders = (resp, req) => resp.headers,
         test = /.*/
     } = options
 
@@ -38,7 +38,7 @@ module.exports = (conf, options) => {
                     debug && console.log(newPath, 'response')
                     res.pipe(resp)
                 }).on('response', function (response) {
-                    resp.writeHead(response.statusCode, response.statusMessage, responseHeaders(response))
+                    resp.writeHead(response.statusCode, response.statusMessage, responseHeaders(response, req))
                 }).on('timeout', function () {
                     debug && console.log(newPath, 'timeout')
                 }).on('error', function (err) {
