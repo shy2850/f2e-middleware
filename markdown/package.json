@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/shy2850/f2e-middleware#readme",
   "dependencies": {
-    "marked": "^0.3.6"
+    "marked": "^4.0.10"
   }
 }
