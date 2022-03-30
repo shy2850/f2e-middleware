@@ -1,6 +1,6 @@
 {
   "name": "f2e-middle-proxy",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "description": "proxy url to f2e-server",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,5 @@
   "bugs": {
     "url": "https://github.com/shy2850/f2e-middleware/issues"
   },
-  "homepage": "https://github.com/shy2850/f2e-middleware#readme",
-  "dependencies": {}
+  "homepage": "https://github.com/shy2850/f2e-middleware#readme"
 }
