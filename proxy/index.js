@@ -1,7 +1,23 @@
 // @ts-check
 const { URL } = require('url')
 const http = require('http')
-module.exports = (conf, options) => {
+/**
+ * 
+ * @param {*} conf 
+ * @param {{
+ * setBefore?: number,
+ * test: RegExp,
+ * url: string | string[],
+ * debug?: boolean,
+ * timeout?: number,
+ * pathname?: string | {(s:string, ...args: any[]): string},
+ * renderHeaders?: (req: http.IncomingMessage) => http.IncomingHttpHeaders
+ * responseHeaders?: (req: http.IncomingMessage) => http.OutgoingHttpHeaders
+ * options?: http.RequestOptions
+ * }} _options 
+ * @returns 
+ */
+module.exports = (conf, _options) => {
     const {
         setBefore = 0,
         url,
@@ -9,9 +25,10 @@ module.exports = (conf, options) => {
         timeout = 120000,
         pathname = m => m,
         renderHeaders = req => req.headers,
-        responseHeaders = (resp, req) => resp.headers,
+        responseHeaders = (resp, req) => resp.getHeaders(),
+        options = {},
         test = /.*/
-    } = options
+    } = _options
 
     if (!url) {
         throw new Error('url needed!')
@@ -24,7 +41,7 @@ module.exports = (conf, options) => {
                 return urls[i]
             }
         }
-    })([].concat(url));
+    })([''].concat(url).filter(l => !!l));
 
     /**
      * 
@@ -33,10 +50,11 @@ module.exports = (conf, options) => {
      * @param {import('http').ServerResponse} resp
      */
     const render = function (path, req, resp) {
-        if (test.test(req.url)) {
+        if (typeof req.url != 'undefined' && test.test(req.url)) {
             const _url = url_provider.get()
             try {
-                const newPath = new URL(req.url.replace(test, pathname), _url)
+                // @ts-ignore
+                const newPath = new URL(req.url && req.url.replace(test, pathname) || '/', _url)
                 debug && console.log(newPath, 'begin')
                 const creq = http.request(newPath, {
                     method: req.method,
@@ -44,11 +62,12 @@ module.exports = (conf, options) => {
                         host: _url.replace(/^https?:\/\/([^\/]+).*$/, '$1')
                     }, renderHeaders(req)),
                     timeout,
+                    ...options,
                 }, function (res) {
                     debug && console.log(newPath, 'response')
                     res.pipe(resp)
                 }).on('response', function (response) {
-                    resp.writeHead(response.statusCode, response.statusMessage, responseHeaders(response, req))
+                    resp.writeHead(response.statusCode || 200, response.statusMessage, responseHeaders(response))
                 }).on('timeout', function () {
                     debug && console.log(newPath, 'timeout')
                 }).on('error', function (err) {
